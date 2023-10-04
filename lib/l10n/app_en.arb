@@ -1,0 +1,11 @@
+{
+  "appTheme": "🎨 App theme",
+  "cancel": "Cancel",
+  "chooseTheme": "Choose the app''s theme:",
+  "darkTheme": "🌙 Dark",
+  "lightTheme": "☀ Light",
+  "systemTheme": "⚙ System",
+  "testDarkTheme": "🤡 🌙 Test",
+  "testLightTheme": "🤡 ☀ Test",
+  "title": "Theme Color Chart"
+}
