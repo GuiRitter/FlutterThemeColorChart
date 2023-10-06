@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:theme_color_chart/constants/app_bar_popup_menu.enum.dart';
@@ -111,26 +110,80 @@ onHomePopupMenuItemPressed({
             ),
           ];
 
-          if (kDebugMode) {
-            optionList.add(
-              ThemeOptionWidget(
-                themeMode: ThemeEnum.testDark,
-                title: l10n.testDarkTheme,
-              ),
-            );
+          optionList.add(
+            ThemeOptionWidget(
+              themeMode: ThemeEnum.testDark,
+              title: l10n.testDarkTheme,
+            ),
+          );
 
-            optionList.add(
-              ThemeOptionWidget(
-                themeMode: ThemeEnum.testLight,
-                title: l10n.testLightTheme,
-              ),
-            );
-          }
+          optionList.add(
+            ThemeOptionWidget(
+              themeMode: ThemeEnum.testLight,
+              title: l10n.testLightTheme,
+            ),
+          );
 
           optionList.add(
             ThemeOptionWidget(
               themeMode: ThemeEnum.system,
               title: l10n.systemTheme,
+            ),
+          );
+
+          optionList.add(
+            const ThemeOptionWidget(
+              themeMode: ThemeEnum.fromSwatch,
+              title: "fromSwatch",
+            ),
+          );
+
+          optionList.add(
+            const ThemeOptionWidget(
+              themeMode: ThemeEnum.fromSeedBlack,
+              title: "fromSeedBlack",
+            ),
+          );
+
+          optionList.add(
+            const ThemeOptionWidget(
+              themeMode: ThemeEnum.fromSeedWhite,
+              title: "fromSeedWhite",
+            ),
+          );
+
+          optionList.add(
+            const ThemeOptionWidget(
+              themeMode: ThemeEnum.defaultLight,
+              title: "defaultLight",
+            ),
+          );
+
+          optionList.add(
+            const ThemeOptionWidget(
+              themeMode: ThemeEnum.highContrastLight,
+              title: "highContrastLight",
+            ),
+          );
+
+          optionList.add(
+            const ThemeOptionWidget(
+              themeMode: ThemeEnum.highContrastDark,
+              title: "highContrastDark",
+            ),
+          );
+
+          optionList.add(
+            const ThemeOptionWidget(
+              themeMode: ThemeEnum.defaultDark,
+              title: "defaultDark",
+            ),
+          );
+
+          optionList.add(
+            const ThemeOptionWidget(
+              themeMode: ThemeEnum.fromSwatchDark,
+              title: "fromSwatchDark",
             ),
           );
 

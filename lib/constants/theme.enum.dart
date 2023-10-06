@@ -3,31 +3,48 @@ import 'package:flutter/material.dart';
 enum ThemeEnum {
   dark(
     mode: ThemeMode.dark,
-    isTest: false,
   ),
   light(
     mode: ThemeMode.light,
-    isTest: false,
   ),
   system(
     mode: ThemeMode.system,
-    isTest: false,
   ),
   testDark(
     mode: ThemeMode.dark,
-    isTest: true,
   ),
   testLight(
     mode: ThemeMode.light,
-    isTest: true,
+  ),
+  fromSwatch(
+    mode: ThemeMode.light,
+  ),
+  fromSeedBlack(
+    mode: ThemeMode.light,
+  ),
+  fromSeedWhite(
+    mode: ThemeMode.light,
+  ),
+  defaultLight(
+    mode: ThemeMode.light,
+  ),
+  highContrastLight(
+    mode: ThemeMode.light,
+  ),
+  highContrastDark(
+    mode: ThemeMode.dark,
+  ),
+  defaultDark(
+    mode: ThemeMode.dark,
+  ),
+  fromSwatchDark(
+    mode: ThemeMode.dark,
   );
 
   final ThemeMode mode;
-  final bool isTest;
 
   const ThemeEnum({
     required this.mode,
-    required this.isTest,
   });
 
   ThemeEnum get notTest => ThemeEnum.values.byName(

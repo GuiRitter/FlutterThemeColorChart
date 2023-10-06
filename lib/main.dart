@@ -55,15 +55,6 @@ class MyApp extends StatelessWidget {
             themeName!,
           );
 
-          if ((!kDebugMode) && theme.isTest) {
-            theme = theme.notTest;
-
-            prefs.setString(
-              settings.theme,
-              theme.name,
-            );
-          }
-
           themeNotifier.value = theme;
         }
       },
@@ -85,22 +76,58 @@ class MyApp extends StatelessWidget {
       context: context,
     );
 
+    final themeLightMap = {
+      ThemeEnum.light: themeLight,
+      ThemeEnum.testLight: testThemeLight,
+      ThemeEnum.fromSwatch: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(),
+      ),
+      ThemeEnum.fromSeedBlack: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.black,
+        ),
+      ),
+      ThemeEnum.fromSeedWhite: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+        ),
+      ),
+      ThemeEnum.defaultLight: ThemeData(
+        colorScheme: const ColorScheme.light(),
+      ),
+      ThemeEnum.highContrastLight: ThemeData(
+        colorScheme: const ColorScheme.highContrastLight(),
+      ),
+    };
+
+    final themeDarkMap = {
+      ThemeEnum.dark: themeDark,
+      ThemeEnum.testDark: testThemeDark,
+      ThemeEnum.fromSwatch: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(
+          brightness: Brightness.dark,
+        ),
+      ),
+      ThemeEnum.defaultDark: ThemeData(
+        colorScheme: const ColorScheme.dark(),
+      ),
+      ThemeEnum.highContrastDark: ThemeData(
+        colorScheme: const ColorScheme.highContrastDark(),
+      ),
+    };
+
     return ValueListenableBuilder<ThemeEnum>(
       valueListenable: themeNotifier,
       builder: (
         _,
-        themeMode,
+        themeEnum,
         __,
       ) =>
           MaterialApp(
         title: 'Flutter Demo',
-        theme: (kDebugMode && (themeMode == ThemeEnum.testLight))
-            ? testThemeLight
-            : themeLight,
-        darkTheme: (kDebugMode && (themeMode == ThemeEnum.testDark))
-            ? testThemeDark
-            : themeDark,
-        themeMode: themeMode.mode,
+        theme: themeLightMap[themeEnum],
+        darkTheme: themeDarkMap[themeEnum],
+        themeMode: themeEnum.mode,
         // flutter gen-l10n
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
