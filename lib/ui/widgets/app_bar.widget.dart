@@ -4,12 +4,27 @@ import 'package:theme_color_chart/constants/app_bar_popup_menu.enum.dart';
 import 'package:theme_color_chart/constants/settings.dart';
 import 'package:theme_color_chart/constants/theme.enum.dart';
 import 'package:theme_color_chart/dialogs.dart';
+import 'package:theme_color_chart/main.dart';
 import 'package:theme_color_chart/ui/widgets/theme_option.widget.dart';
 import 'package:theme_color_chart/utils/logger.dart';
 
 final GlobalKey _appBarKey = GlobalKey();
 
 final _log = logger("AppBarWidget");
+
+const shadow = Shadow(
+  offset: Offset(
+    0.0,
+    0.0,
+  ),
+  blurRadius: 4,
+  color: Color.fromARGB(
+    255,
+    0,
+    0,
+    0,
+  ),
+);
 
 AppBar build() {
   final l10n = AppLocalizations.of(
@@ -22,6 +37,70 @@ AppBar build() {
       l10n.title,
     ),
     actions: [
+      IconButton(
+        onPressed: () {
+          var index = ThemeEnum.values.indexOf(
+                themeNotifier.value,
+              ) -
+              1;
+
+          if (index < 0) {
+            index = ThemeEnum.values.length - 1;
+          }
+
+          themeNotifier.value = ThemeEnum.values[index];
+        },
+        icon: const Icon(
+          Icons.chevron_left,
+        ),
+      ),
+      TextButton(
+        onPressed: () {},
+        child: ValueListenableBuilder(
+          valueListenable: themeNotifier,
+          builder: (_, value, __) => Stack(
+            children: [
+              // Image.asset(
+              //   'assets/checkered.png',
+              //   repeat: ImageRepeat.repeat,
+              // ),
+              Text(
+                value.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  shadows: <Shadow>[
+                    shadow,
+                    shadow,
+                    shadow,
+                    shadow,
+                    shadow,
+                    shadow,
+                    shadow,
+                    shadow,
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      IconButton(
+        onPressed: () {
+          var index = ThemeEnum.values.indexOf(
+                themeNotifier.value,
+              ) +
+              1;
+
+          if (index >= (ThemeEnum.values.length - 1)) {
+            index = 0;
+          }
+
+          themeNotifier.value = ThemeEnum.values[index];
+        },
+        icon: const Icon(
+          Icons.chevron_right,
+        ),
+      ),
       PopupMenuButton(
         itemBuilder: (context) => [
           PopupMenuItem<AppBarPopupMenuEnum>(
@@ -108,84 +187,51 @@ onHomePopupMenuItemPressed({
               themeMode: ThemeEnum.light,
               title: l10n.lightTheme,
             ),
-          ];
-
-          optionList.add(
             ThemeOptionWidget(
               themeMode: ThemeEnum.testDark,
               title: l10n.testDarkTheme,
             ),
-          );
-
-          optionList.add(
             ThemeOptionWidget(
               themeMode: ThemeEnum.testLight,
               title: l10n.testLightTheme,
             ),
-          );
-
-          optionList.add(
             ThemeOptionWidget(
               themeMode: ThemeEnum.system,
               title: l10n.systemTheme,
             ),
-          );
-
-          optionList.add(
             const ThemeOptionWidget(
               themeMode: ThemeEnum.fromSwatch,
               title: "fromSwatch",
             ),
-          );
-
-          optionList.add(
             const ThemeOptionWidget(
               themeMode: ThemeEnum.fromSeedBlack,
               title: "fromSeedBlack",
             ),
-          );
-
-          optionList.add(
             const ThemeOptionWidget(
               themeMode: ThemeEnum.fromSeedWhite,
               title: "fromSeedWhite",
             ),
-          );
-
-          optionList.add(
             const ThemeOptionWidget(
               themeMode: ThemeEnum.defaultLight,
               title: "defaultLight",
             ),
-          );
-
-          optionList.add(
             const ThemeOptionWidget(
               themeMode: ThemeEnum.highContrastLight,
               title: "highContrastLight",
             ),
-          );
-
-          optionList.add(
             const ThemeOptionWidget(
               themeMode: ThemeEnum.highContrastDark,
               title: "highContrastDark",
             ),
-          );
-
-          optionList.add(
             const ThemeOptionWidget(
               themeMode: ThemeEnum.defaultDark,
               title: "defaultDark",
             ),
-          );
-
-          optionList.add(
             const ThemeOptionWidget(
               themeMode: ThemeEnum.fromSwatchDark,
               title: "fromSwatchDark",
             ),
-          );
+          ];
 
           return AlertDialog(
             title: Text(
