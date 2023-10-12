@@ -83,6 +83,7 @@ ThemeData light({
       ParisGreen.selection,
       0.05,
     )!,
+    progressIndicator: ParisGreen.body,
     scaffoldBackground: Colors.white,
     scrim: Colors.white.withAlpha(
       192,
@@ -96,7 +97,7 @@ ThemeData light({
     textBody: Colors.grey.shade800,
     textCursor: ParisGreen.body,
     textDisplay: Colors.grey.shade600,
-    textButtonForeground: ParisGreen.body,
+    textButtonForeground: ParisGreen.primary,
     textFieldBorderBlurred: Colors.grey.shade500,
     textFieldBorderFocused: ParisGreen.body,
     textFieldLabelBlurred: Colors.grey.shade800,

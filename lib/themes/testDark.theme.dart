@@ -17,6 +17,7 @@ ThemeData testDark({
       hover: Colors.black,
       listTileIconForeground: Colors.yellow,
       popupMenuBackground: Colors.brown,
+      progressIndicator: Colors.yellow,
       scaffoldBackground: Colors.blue.shade900,
       scrim: Colors.white54,
       shadow: Colors.red,

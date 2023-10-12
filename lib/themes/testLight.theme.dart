@@ -17,6 +17,7 @@ ThemeData testLight({
       hover: Colors.black,
       listTileIconForeground: Colors.yellow,
       popupMenuBackground: Colors.brown,
+      progressIndicator: Colors.yellow,
       scaffoldBackground: Colors.blue.shade900,
       scrim: Colors.black54,
       shadow: Colors.red,

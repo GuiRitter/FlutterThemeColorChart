@@ -18,6 +18,7 @@ ThemeData getTheme({
   required Color hover,
   required Color listTileIconForeground,
   required Color popupMenuBackground,
+  required Color progressIndicator,
   required Color scaffoldBackground,
   required Color scrim,
   required Color shadow,
@@ -150,6 +151,9 @@ ThemeData getTheme({
     ),
     popupMenuTheme: PopupMenuThemeData(
       color: popupMenuBackground,
+    ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: progressIndicator,
     ),
     radioTheme: RadioThemeData(
       fillColor: MaterialStateProperty.resolveWith(

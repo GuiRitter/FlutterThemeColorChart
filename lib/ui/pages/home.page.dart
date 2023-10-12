@@ -37,6 +37,8 @@ class HomePage extends StatelessWidget {
           ),
           child: Column(
             children: [
+              const CircularProgressIndicator(),
+              fieldSpacing(),
               Text(
                 "headlineLarge",
                 style: Theme.of(
