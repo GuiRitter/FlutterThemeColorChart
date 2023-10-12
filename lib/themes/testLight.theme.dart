@@ -22,7 +22,9 @@ ThemeData testLight({
       shadow: Colors.red,
       snackBarBackground: Colors.red,
       snackBarForeground: Colors.blue,
-      splash: Colors.white.withAlpha(32),
+      splash: Colors.white.withAlpha(
+        32,
+      ),
       textBody: Colors.yellow,
       textCursor: Colors.green,
       textDisplay: Colors.yellow,
