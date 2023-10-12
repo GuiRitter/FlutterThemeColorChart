@@ -95,6 +95,7 @@ ThemeData getTheme({
     dividerColor: divider,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        foregroundColor: appBarForeground,
         backgroundColor: elevatedButtonBackground,
       ),
     ),
