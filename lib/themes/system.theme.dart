@@ -20,7 +20,6 @@ ThemeData getTheme({
   required Color popupMenuBackground,
   required Color scaffoldBackground,
   required Color scrim,
-  required Color selectionBackground,
   required Color shadow,
   required Color snackBarBackground,
   required Color snackBarForeground,
@@ -33,6 +32,8 @@ ThemeData getTheme({
   required Color textFieldBorderFocused,
   required Color textFieldLabelBlurred,
   required Color textFieldLabelFocused,
+  required Color textSelectionBackground,
+  required Color textSelectionHandle,
 }) {
   final theme = Theme.of(
     context,
@@ -183,8 +184,8 @@ ThemeData getTheme({
     ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: textCursor,
-      selectionColor: selectionBackground,
-      selectionHandleColor: selectionBackground,
+      selectionColor: textSelectionBackground,
+      selectionHandleColor: textSelectionHandle,
     ),
     textTheme: Theme.of(
       context,

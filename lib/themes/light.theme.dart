@@ -85,7 +85,6 @@ ThemeData light({
     )!,
     scaffoldBackground: Colors.white, // Colors.white,
     scrim: Colors.white.withAlpha(192), // Colors.black54,
-    selectionBackground: ParisGreen.selection,
     shadow: theme.shadowColor, // theme.shadowColor,
     snackBarBackground: Colors.black, // Colors.black,
     snackBarForeground: Colors.grey.shade500, // Colors.grey.shade500,
@@ -98,5 +97,7 @@ ThemeData light({
     textFieldBorderFocused: ParisGreen.body,
     textFieldLabelBlurred: Colors.grey.shade800, // Colors.grey.shade800,
     textFieldLabelFocused: ParisGreen.body,
+    textSelectionBackground: ParisGreen.selection,
+    textSelectionHandle: Chartreuse.body,
   );
 }

@@ -19,7 +19,6 @@ ThemeData testLight({
       popupMenuBackground: Colors.brown,
       scaffoldBackground: Colors.blue.shade900,
       scrim: Colors.black54,
-      selectionBackground: Colors.pink,
       shadow: Colors.red,
       snackBarBackground: Colors.red,
       snackBarForeground: Colors.blue,
@@ -32,4 +31,6 @@ ThemeData testLight({
       textFieldBorderFocused: Colors.green,
       textFieldLabelBlurred: Colors.yellow,
       textFieldLabelFocused: Colors.green,
+      textSelectionBackground: Colors.pink,
+      textSelectionHandle: Colors.pink,
     );
