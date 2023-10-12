@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:theme_color_chart/constants/app_bar_popup_menu.enum.dart';
+import 'package:theme_color_chart/constants/color_scheme.enum.dart';
 import 'package:theme_color_chart/constants/settings.dart';
 import 'package:theme_color_chart/constants/theme.enum.dart';
+import 'package:theme_color_chart/constants/theme_data.enum.dart';
 import 'package:theme_color_chart/dialogs.dart';
 import 'package:theme_color_chart/main.dart';
 import 'package:theme_color_chart/ui/widgets/theme_option.widget.dart';
@@ -26,58 +28,64 @@ const shadow = Shadow(
   ),
 );
 
-AppBar build() {
+const shadows = <Shadow>[
+  shadow,
+  shadow,
+  shadow,
+  shadow,
+  shadow,
+  shadow,
+  shadow,
+  shadow,
+];
+
+AppBar build({
+  required BuildContext context,
+}) {
   final l10n = AppLocalizations.of(
     navigatorState.currentContext!,
   )!;
 
   return AppBar(
     key: _appBarKey,
-    title: Text(
-      l10n.title,
+    title: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          l10n.title,
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall!.copyWith(
+                color: Color.lerp(
+                  Theme.of(
+                    context,
+                  ).textTheme.bodySmall!.color,
+                  Theme.of(
+                    context,
+                  ).appBarTheme.foregroundColor,
+                  0.5,
+                ),
+              ),
+        ),
+        const Text(
+          "Subtitle",
+        ),
+      ],
     ),
     actions: [
-      IconButton(
-        onPressed: () {
-          var index = ThemeEnum.values.indexOf(
-                themeNotifier.value,
-              ) -
-              1;
-
-          if (index < 0) {
-            index = ThemeEnum.values.length - 1;
-          }
-
-          themeNotifier.value = ThemeEnum.values[index];
-        },
-        icon: const Icon(
-          Icons.chevron_left,
-        ),
-      ),
       TextButton(
-        onPressed: () {},
+        onPressed: () {
+          darkModeNotifier.value = !darkModeNotifier.value;
+        },
         child: ValueListenableBuilder(
-          valueListenable: themeNotifier,
+          valueListenable: darkModeNotifier,
           builder: (_, value, __) => Stack(
             children: [
-              // Image.asset(
-              //   'assets/checkered.png',
-              //   repeat: ImageRepeat.repeat,
-              // ),
               Text(
-                value.name,
+                value.toString(),
                 style: const TextStyle(
                   color: Colors.white,
-                  shadows: <Shadow>[
-                    shadow,
-                    shadow,
-                    shadow,
-                    shadow,
-                    shadow,
-                    shadow,
-                    shadow,
-                    shadow,
-                  ],
+                  shadows: shadows,
                 ),
               ),
             ],
@@ -86,16 +94,101 @@ AppBar build() {
       ),
       IconButton(
         onPressed: () {
-          var index = ThemeEnum.values.indexOf(
-                themeNotifier.value,
+          var index = ThemeDataEnum.values.indexOf(
+                themeDataNotifier.value,
+              ) -
+              1;
+
+          if (index < 0) {
+            index = ThemeDataEnum.values.length - 1;
+          }
+
+          themeDataNotifier.value = ThemeDataEnum.values[index];
+        },
+        icon: const Icon(
+          Icons.chevron_left,
+        ),
+      ),
+      TextButton(
+        onPressed: () {},
+        child: ValueListenableBuilder(
+          valueListenable: themeDataNotifier,
+          builder: (_, value, __) => Stack(
+            children: [
+              Text(
+                value.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  shadows: shadows,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      IconButton(
+        onPressed: () {
+          var index = ThemeDataEnum.values.indexOf(
+                themeDataNotifier.value,
               ) +
               1;
 
-          if (index >= (ThemeEnum.values.length - 1)) {
+          if (index > (ThemeDataEnum.values.length - 1)) {
             index = 0;
           }
 
-          themeNotifier.value = ThemeEnum.values[index];
+          themeDataNotifier.value = ThemeDataEnum.values[index];
+        },
+        icon: const Icon(
+          Icons.chevron_right,
+        ),
+      ),
+      IconButton(
+        onPressed: () {
+          var index = ColorSchemeEnum.values.indexOf(
+                colorSchemeNotifier.value,
+              ) -
+              1;
+
+          if (index < 0) {
+            index = ColorSchemeEnum.values.length - 1;
+          }
+
+          colorSchemeNotifier.value = ColorSchemeEnum.values[index];
+        },
+        icon: const Icon(
+          Icons.chevron_left,
+        ),
+      ),
+      TextButton(
+        onPressed: () {},
+        child: ValueListenableBuilder(
+          valueListenable: colorSchemeNotifier,
+          builder: (_, value, __) => Stack(
+            children: [
+              Text(
+                value.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  shadows: shadows,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      IconButton(
+        onPressed: () {
+          var index = ColorSchemeEnum.values.indexOf(
+                colorSchemeNotifier.value,
+              ) +
+              1;
+
+          if (index > (ColorSchemeEnum.values.length - 1)) {
+            index = 0;
+          }
+
+          colorSchemeNotifier.value = ColorSchemeEnum.values[index];
         },
         icon: const Icon(
           Icons.chevron_right,
@@ -174,6 +267,9 @@ onHomePopupMenuItemPressed({
   switch (value) {
     case AppBarPopupMenuEnum.theme:
       showDialog(
+        barrierColor: Theme.of(
+          navigatorState.currentContext!,
+        ).colorScheme.scrim,
         context: navigatorState.currentContext!,
         builder: (
           context,
@@ -198,38 +294,6 @@ onHomePopupMenuItemPressed({
             ThemeOptionWidget(
               themeMode: ThemeEnum.system,
               title: l10n.systemTheme,
-            ),
-            const ThemeOptionWidget(
-              themeMode: ThemeEnum.fromSwatch,
-              title: "fromSwatch",
-            ),
-            const ThemeOptionWidget(
-              themeMode: ThemeEnum.fromSeedBlack,
-              title: "fromSeedBlack",
-            ),
-            const ThemeOptionWidget(
-              themeMode: ThemeEnum.fromSeedWhite,
-              title: "fromSeedWhite",
-            ),
-            const ThemeOptionWidget(
-              themeMode: ThemeEnum.defaultLight,
-              title: "defaultLight",
-            ),
-            const ThemeOptionWidget(
-              themeMode: ThemeEnum.highContrastLight,
-              title: "highContrastLight",
-            ),
-            const ThemeOptionWidget(
-              themeMode: ThemeEnum.highContrastDark,
-              title: "highContrastDark",
-            ),
-            const ThemeOptionWidget(
-              themeMode: ThemeEnum.defaultDark,
-              title: "defaultDark",
-            ),
-            const ThemeOptionWidget(
-              themeMode: ThemeEnum.fromSwatchDark,
-              title: "fromSwatchDark",
             ),
           ];
 

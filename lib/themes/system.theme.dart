@@ -8,69 +8,171 @@ final themeByBrightness = {
 ThemeData getTheme({
   required Brightness brightness,
   required BuildContext context,
-  required Color primary,
-  required Color onPrimary,
-  required Color onSurface,
-  required Color appBar,
-  required Color appBarShadow,
-  required Color bottomAppBarShadow,
-  required Color canvas,
-  required Color card,
+  required Color secondary,
+  required Color appBarBackground,
+  required Color appBarForeground,
+  required Color cardBackground,
   required Color dialogBackground,
   required Color divider,
-  required Color listTileIcon,
+  required Color elevatedButtonBackground,
+  required Color hover,
+  required Color listTileIconForeground,
+  required Color popupMenuBackground,
   required Color scaffoldBackground,
   required Color scrim,
+  required Color selectionBackground,
   required Color shadow,
   required Color snackBarBackground,
-  required Color snackBarContent,
+  required Color snackBarForeground,
+  required Color splash,
   required Color textBody,
+  required Color textCursor,
   required Color textDisplay,
   required Color textButtonForeground,
+  required Color textFieldBorderBlurred,
+  required Color textFieldBorderFocused,
   required Color textFieldLabelBlurred,
   required Color textFieldLabelFocused,
 }) {
+  final theme = Theme.of(
+    context,
+  );
+
+  final labelSmallFontSize = theme.textTheme.labelSmall?.fontSize ?? 10.0;
+
+  final inputDecorationBorderSideWidth = labelSmallFontSize / 5;
+
   return themeByBrightness[brightness]!.copyWith(
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.grey,
     ).copyWith(
-      primary: primary,
-      onPrimary: onPrimary,
-      onSurface: onSurface,
+      primary: Colors.deepPurple,
+      onPrimary: Colors.deepPurple,
+      primaryContainer: Colors.deepPurple,
+      onPrimaryContainer: Colors.deepPurple,
+      inversePrimary: Colors.deepPurple,
+      secondary: Colors.deepPurple,
+      onSecondary: Colors.deepPurple,
+      secondaryContainer: Colors.deepPurple,
+      onSecondaryContainer: Colors.deepPurple,
+      tertiary: Colors.deepPurple,
+      onTertiary: Colors.deepPurple,
+      tertiaryContainer: Colors.deepPurple,
+      onTertiaryContainer: Colors.deepPurple,
+      background: Colors.deepPurple,
+      onBackground: Colors.deepPurple,
+      error: Colors.deepPurple,
+      onError: Colors.deepPurple,
+      errorContainer: Colors.deepPurple,
+      onErrorContainer: Colors.deepPurple,
+      outline: Colors.deepPurple,
+      outlineVariant: Colors.deepPurple,
+      surface: Colors.deepPurple,
+      onSurface: Colors.deepPurple,
+      surfaceVariant: Colors.deepPurple,
+      onSurfaceVariant: Colors.deepPurple,
+      inverseSurface: Colors.deepPurple,
+      onInverseSurface: Colors.deepPurple,
+      surfaceTint: Colors.deepPurple,
+      brightness: brightness,
+      shadow: Colors.deepPurple,
       scrim: scrim,
     ),
     appBarTheme: AppBarTheme(
-      color: appBar,
-      shadowColor: appBarShadow,
+      actionsIconTheme: IconThemeData(
+        color: appBarForeground,
+      ),
+      foregroundColor: appBarForeground,
+      color: appBarBackground,
+      shadowColor: shadow,
     ),
     bottomAppBarTheme: BottomAppBarTheme(
-      shadowColor: bottomAppBarShadow,
+      shadowColor: shadow,
     ),
-    canvasColor: canvas,
-    cardColor: card,
+    cardColor: cardBackground,
     dialogBackgroundColor: dialogBackground,
     dividerColor: divider,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: elevatedButtonBackground,
+      ),
+    ),
+    hoverColor: hover,
     inputDecorationTheme: InputDecorationTheme(
-      floatingLabelStyle: TextStyle(
-        // only when focused
-        color: textFieldLabelFocused,
+      floatingLabelStyle: MaterialStateTextStyle.resolveWith(
+        (
+          states,
+        ) =>
+            TextStyle(
+          color: states.contains(
+            MaterialState.focused,
+          )
+              ? textFieldLabelFocused
+              : textFieldLabelBlurred,
+        ),
       ),
       labelStyle: TextStyle(
-        // overrides floatingLabelStyle if not defined
         color: textFieldLabelBlurred,
+      ),
+      border: MaterialStateUnderlineInputBorder.resolveWith(
+        (
+          states,
+        ) {
+          var color = states.contains(
+            MaterialState.focused,
+          )
+              ? textFieldBorderFocused
+              : textFieldBorderBlurred;
+
+          if (states.contains(
+            MaterialState.hovered,
+          )) {
+            color = Color.lerp(
+              color,
+              appBarForeground,
+              0.6,
+            )!;
+          }
+
+          return UnderlineInputBorder(
+            borderSide: BorderSide(
+              width: inputDecorationBorderSideWidth,
+              color: color,
+            ),
+          );
+        },
       ),
     ),
     listTileTheme: ListTileThemeData(
-      iconColor: listTileIcon,
+      iconColor: listTileIconForeground,
+    ),
+    popupMenuTheme: PopupMenuThemeData(
+      color: popupMenuBackground,
+    ),
+    radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.resolveWith(
+        (
+          states,
+        ) {
+          var color = states.contains(
+            MaterialState.selected,
+          )
+              ? secondary
+              : textBody;
+
+          return color;
+        },
+      ),
     ),
     scaffoldBackgroundColor: scaffoldBackground,
     shadowColor: shadow,
     snackBarTheme: SnackBarThemeData(
       backgroundColor: snackBarBackground,
       contentTextStyle: TextStyle(
-        color: snackBarContent,
+        color: snackBarForeground,
       ),
     ),
+    splashColor: splash,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: textButtonForeground,
@@ -78,6 +180,11 @@ ThemeData getTheme({
           fontWeight: FontWeight.bold,
         ),
       ),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: textCursor,
+      selectionColor: selectionBackground,
+      selectionHandleColor: selectionBackground,
     ),
     textTheme: Theme.of(
       context,
