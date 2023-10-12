@@ -22,14 +22,14 @@ ThemeData testDark({
       shadow: Colors.red,
       snackBarBackground: Colors.red,
       snackBarForeground: Colors.blue,
-      splash: Colors.white.withAlpha(
-        32,
+      splash: Colors.purple.withAlpha(
+        128,
       ),
       textBody: Colors.yellow,
       textCursor: Colors.green,
       textDisplay: Colors.yellow,
-      textButtonForeground: Colors.yellow,
-      textFieldBorderBlurred: Colors.green,
+      textButtonForeground: Colors.deepOrange,
+      textFieldBorderBlurred: Colors.yellow,
       textFieldBorderFocused: Colors.green,
       textFieldLabelBlurred: Colors.yellow,
       textFieldLabelFocused: Colors.green,
