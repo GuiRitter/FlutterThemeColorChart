@@ -98,10 +98,14 @@ class MyApp extends StatelessWidget {
                     ? custom_theme.testDark(context: context)
                     : getTheme(),
             themeMode: ((colorSchemeEnum == ColorSchemeEnum.customDark) ||
-                    (colorSchemeEnum == ColorSchemeEnum.testDark) ||
-                    darkMode)
+                    (colorSchemeEnum == ColorSchemeEnum.testDark))
                 ? ThemeMode.dark
-                : ThemeMode.light,
+                : ((colorSchemeEnum == ColorSchemeEnum.customLight) ||
+                        (colorSchemeEnum == ColorSchemeEnum.testLight))
+                    ? ThemeMode.light
+                    : darkMode
+                        ? ThemeMode.dark
+                        : ThemeMode.light,
             // flutter gen-l10n
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
