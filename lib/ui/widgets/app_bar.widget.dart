@@ -324,3 +324,44 @@ onHomePopupMenuItemPressed({
       break;
   }
 }
+
+Future<double> getAppBarElevation({
+  required int delay,
+}) async {
+  _log("getAppBarElevation").raw("delay", delay).print();
+
+  await Future.delayed(
+    Duration(
+      microseconds: delay,
+    ),
+  );
+
+  final BuildContext? context = _appBarKey.currentContext;
+
+  if (context != null) {
+    final statefulElement = context as StatefulElement;
+
+    SingleChildRenderObjectElement? singleChildRenderObjectElement;
+
+    statefulElement.visitChildElements(
+      (
+        element,
+      ) {
+        singleChildRenderObjectElement =
+            element as SingleChildRenderObjectElement;
+      },
+    );
+
+    final semantics = singleChildRenderObjectElement!.widget as Semantics;
+
+    final annotatedRegion = semantics.child as AnnotatedRegion;
+
+    final material = annotatedRegion.child as Material;
+
+    return material.elevation;
+  } else {
+    return await getAppBarElevation(
+      delay: delay + 1,
+    );
+  }
+}

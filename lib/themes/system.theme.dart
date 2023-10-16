@@ -91,6 +91,7 @@ ThemeData getTheme({
     bottomAppBarTheme: BottomAppBarTheme(
       shadowColor: shadow,
     ),
+    canvasColor: scaffoldBackground,
     cardColor: cardBackground,
     dialogBackgroundColor: dialogBackground,
     dividerColor: divider,
