@@ -30,6 +30,7 @@ ThemeData testLight({
       textCursor: Colors.green,
       textDisplay: Colors.yellow,
       textButtonForeground: Colors.deepOrange,
+      textButtonOverlay: Colors.deepOrange,
       textFieldBorderBlurred: Colors.yellow,
       textFieldBorderFocused: Colors.green,
       textFieldLabelBlurred: Colors.yellow,

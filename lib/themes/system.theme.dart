@@ -29,6 +29,7 @@ ThemeData getTheme({
   required Color textCursor,
   required Color textDisplay,
   required Color textButtonForeground,
+  required Color textButtonOverlay,
   required Color textFieldBorderBlurred,
   required Color textFieldBorderFocused,
   required Color textFieldLabelBlurred,
@@ -185,6 +186,28 @@ ThemeData getTheme({
         foregroundColor: textButtonForeground,
         textStyle: const TextStyle(
           fontWeight: FontWeight.bold,
+        ),
+      ).copyWith(
+        overlayColor: MaterialStateProperty.resolveWith(
+          (
+            states,
+          ) {
+            int alpha = 0;
+
+            if (states.contains(
+              MaterialState.focused,
+            )) {
+              alpha += 64;
+            }
+
+            if (states.contains(
+              MaterialState.hovered,
+            )) {
+              alpha += 64;
+            }
+
+            return textButtonOverlay.withAlpha(alpha);
+          },
         ),
       ),
     ),
