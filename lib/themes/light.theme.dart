@@ -100,7 +100,7 @@ ThemeData light({
     textButtonForeground: ParisGreen.primary,
     textFieldBorderBlurred: Colors.grey.shade500,
     textFieldBorderFocused: ParisGreen.body,
-    textFieldLabelBlurred: Colors.grey.shade800,
+    textFieldLabelBlurred: Colors.grey.shade600,
     textFieldLabelFocused: ParisGreen.body,
     textSelectionBackground: ParisGreen.selection,
     textSelectionHandle: Chartreuse.body,

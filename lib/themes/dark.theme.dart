@@ -96,7 +96,7 @@ ThemeData dark({
       textButtonForeground: ParisGreen.primary,
       textFieldBorderBlurred: Colors.grey.shade700,
       textFieldBorderFocused: ParisGreen.body,
-      textFieldLabelBlurred: Colors.grey.shade500,
+      textFieldLabelBlurred: Colors.grey.shade600,
       textFieldLabelFocused: ParisGreen.body,
       textSelectionBackground: ParisGreen.selection,
       textSelectionHandle: Chartreuse.body,
