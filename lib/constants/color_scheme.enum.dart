@@ -7,6 +7,8 @@ enum ColorSchemeEnum {
   highContrastDark,
   dark,
   fromSwatchDark,
+  customSwatch,
+  customSwatchDark,
   customDark,
   customLight,
   testDark,
