@@ -120,6 +120,42 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   fieldSpacing(),
+                  DropdownButton(
+                    onChanged: (_) {},
+                    isExpanded: true,
+                    items: const [
+                      DropdownMenuItem(
+                        value: 0,
+                        child: Text(
+                          "Usage",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: 1,
+                        child: Text(
+                          "Anatomy",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: 2,
+                        child: Text(
+                          "Behavior",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: 3,
+                        child: Text(
+                          "Theming",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: 4,
+                        child: Text(
+                          "Specs",
+                        ),
+                      ),
+                    ],
+                  ),
                   DropDownMenuWidget(
                     requestFocusOnTap: false,
                     label: const Text(

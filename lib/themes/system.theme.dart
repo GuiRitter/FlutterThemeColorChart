@@ -105,8 +105,8 @@ ThemeData getTheme({
             var color = states.contains(
               MaterialState.focused,
             )
-                ? textFieldLabelFocused
-                : textFieldLabelBlurred;
+                ? textFieldBorderFocused
+                : textFieldBorderBlurred;
 
             if (states.contains(
               MaterialState.hovered,
