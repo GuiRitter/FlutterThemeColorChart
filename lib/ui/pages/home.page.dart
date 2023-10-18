@@ -3,6 +3,7 @@ import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:theme_color_chart/ui/widgets/app_bar.widget.dart' as app_bar;
+import 'package:theme_color_chart/ui/widgets/drop_down_menu.widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -117,6 +118,35 @@ class HomePage extends StatelessWidget {
                       ),
                       keyboardType: TextInputType.visiblePassword,
                     ),
+                  ),
+                  fieldSpacing(),
+                  DropDownMenuWidget(
+                    requestFocusOnTap: false,
+                    label: const Text(
+                      "Drop Down",
+                    ),
+                    dropdownMenuEntries: const [
+                      DropdownMenuEntry(
+                        value: 0,
+                        label: "Usage",
+                      ),
+                      DropdownMenuEntry(
+                        value: 1,
+                        label: "Anatomy",
+                      ),
+                      DropdownMenuEntry(
+                        value: 2,
+                        label: "Behavior",
+                      ),
+                      DropdownMenuEntry(
+                        value: 3,
+                        label: "Theming",
+                      ),
+                      DropdownMenuEntry(
+                        value: 4,
+                        label: "Specs",
+                      ),
+                    ],
                   ),
                   fieldSpacing(),
                   const Divider(),

@@ -96,6 +96,46 @@ ThemeData getTheme({
     cardColor: cardBackground,
     dialogBackgroundColor: dialogBackground,
     dividerColor: divider,
+    dropdownMenuTheme: DropdownMenuThemeData(
+      inputDecorationTheme: InputDecorationTheme(
+        border: MaterialStateUnderlineInputBorder.resolveWith(
+          (
+            states,
+          ) {
+            var color = states.contains(
+              MaterialState.focused,
+            )
+                ? textFieldLabelFocused
+                : textFieldLabelBlurred;
+
+            if (states.contains(
+              MaterialState.hovered,
+            )) {
+              color = Color.lerp(
+                color,
+                appBarForeground,
+                0.6,
+              )!;
+            }
+
+            return UnderlineInputBorder(
+              borderSide: BorderSide(
+                width: inputDecorationBorderSideWidth,
+                color: color,
+              ),
+            );
+          },
+        ),
+      ),
+      menuStyle: MenuStyle(
+        backgroundColor: MaterialStatePropertyAll<Color>(
+          popupMenuBackground,
+        ),
+        shadowColor: MaterialStatePropertyAll<Color>(
+          shadow,
+        ),
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: appBarForeground,
@@ -150,6 +190,19 @@ ThemeData getTheme({
     ),
     listTileTheme: ListTileThemeData(
       iconColor: listTileIconForeground,
+    ),
+    menuButtonTheme: MenuButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll(
+          popupMenuBackground,
+        ),
+        foregroundColor: MaterialStatePropertyAll(
+          textBody,
+        ),
+        overlayColor: MaterialStatePropertyAll(
+          hover,
+        ),
+      ),
     ),
     popupMenuTheme: PopupMenuThemeData(
       color: popupMenuBackground,
