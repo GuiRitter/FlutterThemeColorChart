@@ -90,6 +90,7 @@ ThemeData getTheme({
       shadowColor: shadow,
     ),
     bottomAppBarTheme: BottomAppBarTheme(
+      color: scaffoldBackground,
       shadowColor: shadow,
     ),
     canvasColor: scaffoldBackground,

@@ -10,10 +10,6 @@ import 'package:theme_color_chart/main.dart';
 import 'package:theme_color_chart/ui/widgets/theme_option.widget.dart';
 import 'package:theme_color_chart/utils/logger.dart';
 
-final GlobalKey _appBarKey = GlobalKey();
-
-final _log = logger("AppBarWidget");
-
 const shadow = Shadow(
   offset: Offset(
     0.0,
@@ -38,6 +34,12 @@ const shadows = <Shadow>[
   shadow,
   shadow,
 ];
+
+final GlobalKey _appBarKey = GlobalKey();
+
+final _log = logger("AppBarWidget");
+
+double? _elevation;
 
 AppBar build({
   required BuildContext context,
@@ -219,6 +221,10 @@ Future<double> getElevation({
 }) async {
   _log("getAppBarElevation").raw("delay", delay).print();
 
+  if (_elevation != null) {
+    return _elevation!;
+  }
+
   await Future.delayed(
     Duration(
       microseconds: delay,
@@ -247,7 +253,9 @@ Future<double> getElevation({
 
     final material = annotatedRegion.child as Material;
 
-    return material.elevation;
+    _elevation = material.elevation;
+
+    return _elevation!;
   } else {
     return await getElevation(
       delay: delay + 1,
@@ -322,46 +330,5 @@ onHomePopupMenuItemPressed({
       break;
     default:
       break;
-  }
-}
-
-Future<double> getAppBarElevation({
-  required int delay,
-}) async {
-  _log("getAppBarElevation").raw("delay", delay).print();
-
-  await Future.delayed(
-    Duration(
-      microseconds: delay,
-    ),
-  );
-
-  final BuildContext? context = _appBarKey.currentContext;
-
-  if (context != null) {
-    final statefulElement = context as StatefulElement;
-
-    SingleChildRenderObjectElement? singleChildRenderObjectElement;
-
-    statefulElement.visitChildElements(
-      (
-        element,
-      ) {
-        singleChildRenderObjectElement =
-            element as SingleChildRenderObjectElement;
-      },
-    );
-
-    final semantics = singleChildRenderObjectElement!.widget as Semantics;
-
-    final annotatedRegion = semantics.child as AnnotatedRegion;
-
-    final material = annotatedRegion.child as Material;
-
-    return material.elevation;
-  } else {
-    return await getAppBarElevation(
-      delay: delay + 1,
-    );
   }
 }

@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:theme_color_chart/utils/data.dart';
 import 'package:theme_color_chart/utils/logger.dart';
 
+final _keyMap = <String, GlobalKey>{};
+
 final _log = logger("DropDownMenuWidget");
+
+final _widthMap = <String, double>{};
 
 /// TODO remove after `expandedInsets` is merged into `stable`.
 class DropDownMenuWidget<T> extends StatelessWidget {
   final List<DropdownMenuEntry<T>> dropdownMenuEntries;
   final Widget? label;
   final bool? requestFocusOnTap;
+  final String name;
 
-  final _placeHolderKey = GlobalKey();
-  final _menuKey = GlobalKey();
-
-  DropDownMenuWidget({
+  const DropDownMenuWidget({
     super.key,
+    required this.name,
     required this.dropdownMenuEntries,
     required this.label,
     required this.requestFocusOnTap,
@@ -23,6 +27,12 @@ class DropDownMenuWidget<T> extends StatelessWidget {
   Widget build(
     BuildContext context,
   ) {
+    final placeHolderKey = getFromMapConstructIfNull(
+      key: name,
+      map: _keyMap,
+      constructor: () => GlobalKey(),
+    );
+
     final theme = Theme.of(context);
 
     return FutureBuilder(
@@ -32,7 +42,6 @@ class DropDownMenuWidget<T> extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return DropdownMenu(
-            key: _menuKey,
             dropdownMenuEntries: dropdownMenuEntries
                 .map(
                   (
@@ -55,7 +64,7 @@ class DropDownMenuWidget<T> extends StatelessWidget {
           );
         } else {
           return SizedBox(
-            key: _placeHolderKey,
+            key: placeHolderKey,
             width: double.infinity,
             child: const CircularProgressIndicator(),
           );
@@ -69,12 +78,10 @@ class DropDownMenuWidget<T> extends StatelessWidget {
   }) async {
     _log("getDropDownMenuWidth").raw("delay", delay).print();
 
-    final BuildContext? menuContext = _menuKey.currentContext;
+    var width = _widthMap[name];
 
-    if ((menuContext != null) && (menuContext.mounted)) {
-      final renderBox = menuContext.findRenderObject() as RenderBox;
-
-      return renderBox.size.width;
+    if (width != null) {
+      return width;
     }
 
     await Future.delayed(
@@ -83,12 +90,18 @@ class DropDownMenuWidget<T> extends StatelessWidget {
       ),
     );
 
-    final BuildContext? placeHolderContext = _placeHolderKey.currentContext;
+    final key = _keyMap[name] as GlobalKey;
+
+    final BuildContext? placeHolderContext = key.currentContext;
 
     if ((placeHolderContext != null) && (placeHolderContext.mounted)) {
       final renderBox = placeHolderContext.findRenderObject() as RenderBox;
 
-      return renderBox.size.width;
+      width = renderBox.size.width;
+
+      _widthMap[name] = width;
+
+      return width;
     } else {
       return await getDropDownMenuWidth(
         delay: delay + 1,

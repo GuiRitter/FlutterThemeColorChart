@@ -4,6 +4,8 @@ import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:theme_color_chart/ui/widgets/app_bar.widget.dart' as app_bar;
 import 'package:theme_color_chart/ui/widgets/drop_down_menu.widget.dart';
+import 'package:theme_color_chart/ui/widgets/bottom_app_bar.widget.dart'
+    as bottom_app_bar_widget;
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -41,7 +43,7 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   FutureBuilder(
-                    future: app_bar.getAppBarElevation(
+                    future: app_bar.getElevation(
                       delay: 0,
                     ),
                     builder: (
@@ -156,12 +158,13 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  DropDownMenuWidget(
+                  const DropDownMenuWidget(
+                    name: "drop_down_menu_test",
                     requestFocusOnTap: false,
-                    label: const Text(
+                    label: Text(
                       "Drop Down",
                     ),
-                    dropdownMenuEntries: const [
+                    dropdownMenuEntries: [
                       DropdownMenuEntry(
                         value: 0,
                         label: "Usage",
@@ -296,6 +299,16 @@ class HomePage extends StatelessWidget {
                     onPressed: () {},
                     child: const Text(
                       "Intrinsic Width Button",
+                    ),
+                  ),
+                  fieldSpacing(),
+                  bottom_app_bar_widget.build(
+                    context: context,
+                    child: const SizedBox(
+                      width: double.infinity,
+                      child: Text(
+                        "Bottom App Bar",
+                      ),
                     ),
                   ),
                 ],
