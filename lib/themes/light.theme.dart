@@ -77,7 +77,7 @@ ThemeData light({
     divider: Colors.grey.shade400,
     elevatedButtonBackground: ParisGreen.primary,
     hover: Colors.black12,
-    listTileIconForeground: Colors.grey.shade500,
+    listTileIconForeground: Colors.grey.shade800,
     popupMenuBackground: Color.lerp(
       Colors.white,
       ParisGreen.selection,

@@ -3,9 +3,114 @@ import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:theme_color_chart/ui/widgets/app_bar.widget.dart' as app_bar;
-import 'package:theme_color_chart/ui/widgets/drop_down_menu.widget.dart';
 import 'package:theme_color_chart/ui/widgets/bottom_app_bar.widget.dart'
     as bottom_app_bar_widget;
+import 'package:theme_color_chart/ui/widgets/drop_down_menu.widget.dart';
+
+_buildListTile({
+  required String title,
+  required String subtitle,
+  bool enabled = true,
+}) =>
+    ListTile(
+      enabled: enabled,
+      onTap: () {},
+      title: Text(
+        title,
+      ),
+      subtitle: Text(
+        subtitle,
+      ),
+      trailing: _buildPopupMenuButton(),
+    );
+
+_buildPopupMenuButton() => PopupMenuButton<int>(
+      itemBuilder: (
+        context,
+      ) =>
+          [
+        const PopupMenuItem<int>(
+          value: 0,
+          child: ListTile(
+            leading: SizedBox.shrink(),
+            title: Text(
+              "Single",
+            ),
+          ),
+        ),
+        const PopupMenuItem<int>(
+          value: 1,
+          child: ListTile(
+            leading: SizedBox.shrink(),
+            title: Text(
+              "1.15",
+            ),
+          ),
+        ),
+        const PopupMenuItem<int>(
+          value: 2,
+          child: ListTile(
+            leading: SizedBox.shrink(),
+            title: Text(
+              "Double",
+            ),
+          ),
+        ),
+        const PopupMenuItem<int>(
+          value: 3,
+          child: ListTile(
+            leading: Icon(
+              Icons.check,
+            ),
+            title: Text(
+              "Custom: 1.2",
+            ),
+          ),
+        ),
+        const PopupMenuItem<int>(
+          enabled: false,
+          padding: EdgeInsets.zero,
+          value: 4,
+          child: Divider(),
+        ),
+        const PopupMenuItem<int>(
+          value: 5,
+          child: ListTile(
+            title: Text(
+              "Add space before paragraph",
+            ),
+            trailing: Icon(
+              Icons.arrow_right,
+            ),
+          ),
+        ),
+        const PopupMenuItem<int>(
+          value: 6,
+          child: ListTile(
+            title: Text(
+              "Add space after paragraph",
+            ),
+          ),
+        ),
+        const PopupMenuItem<int>(
+          enabled: false,
+          padding: EdgeInsets.zero,
+          value: 7,
+          child: Divider(),
+        ),
+        const PopupMenuItem<int>(
+          value: 8,
+          child: ListTile(
+            title: Text(
+              "Custom spacing...",
+            ),
+          ),
+        ),
+      ],
+      onSelected: (
+        value,
+      ) {},
+    );
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -198,131 +303,30 @@ class HomePage extends StatelessWidget {
                         title: const Text(
                           "Card",
                         ),
-                        trailing: PopupMenuButton<int>(
-                          itemBuilder: (
-                            context,
-                          ) =>
-                              [
-                            const PopupMenuItem<int>(
-                              value: 0,
-                              child: ListTile(
-                                leading: SizedBox.shrink(),
-                                title: Text(
-                                  "Single",
-                                ),
-                              ),
-                            ),
-                            const PopupMenuItem<int>(
-                              value: 1,
-                              child: ListTile(
-                                leading: SizedBox.shrink(),
-                                title: Text(
-                                  "1.15",
-                                ),
-                              ),
-                            ),
-                            const PopupMenuItem<int>(
-                              value: 2,
-                              child: ListTile(
-                                leading: SizedBox.shrink(),
-                                title: Text(
-                                  "Double",
-                                ),
-                              ),
-                            ),
-                            const PopupMenuItem<int>(
-                              value: 3,
-                              child: ListTile(
-                                leading: Icon(
-                                  Icons.check,
-                                ),
-                                title: Text(
-                                  "Custom: 1.2",
-                                ),
-                              ),
-                            ),
-                            const PopupMenuItem<int>(
-                              enabled: false,
-                              padding: EdgeInsets.zero,
-                              value: 4,
-                              child: Divider(),
-                            ),
-                            const PopupMenuItem<int>(
-                              value: 5,
-                              child: ListTile(
-                                title: Text(
-                                  "Add space before paragraph",
-                                ),
-                                trailing: Icon(
-                                  Icons.arrow_right,
-                                ),
-                              ),
-                            ),
-                            const PopupMenuItem<int>(
-                              value: 6,
-                              child: ListTile(
-                                title: Text(
-                                  "Add space after paragraph",
-                                ),
-                              ),
-                            ),
-                            const PopupMenuItem<int>(
-                              enabled: false,
-                              padding: EdgeInsets.zero,
-                              value: 7,
-                              child: Divider(),
-                            ),
-                            const PopupMenuItem<int>(
-                              value: 8,
-                              child: ListTile(
-                                title: Text(
-                                  "Custom spacing...",
-                                ),
-                              ),
-                            ),
-                          ],
-                          onSelected: (
-                            value,
-                          ) {},
-                        ),
+                        trailing: _buildPopupMenuButton(),
                       ),
                     ),
                     fieldSpacing(),
                     SizedBox(
                       height: 150,
                       child: ListView(
-                        children: const [
-                          ListTile(
-                            title: Text(
-                              "Pencil",
-                            ),
-                            subtitle: Text(
-                              "in stock",
-                            ),
+                        children: [
+                          _buildListTile(
+                            title: "Pencil",
+                            subtitle: "in stock",
                           ),
-                          ListTile(
-                            title: Text(
-                              "Rubberbands",
-                            ),
-                            subtitle: Text(
-                              "in stock",
-                            ),
+                          _buildListTile(
+                            enabled: false,
+                            title: "Rubberbands",
+                            subtitle: "in stock",
                           ),
-                          ListTile(
-                            title: Text(
-                              "Rulers",
-                            ),
-                            subtitle: Text(
-                              "only 1 left in stock",
-                            ),
+                          _buildListTile(
+                            title: "Rulers",
+                            subtitle: "only 1 left in stock",
                           ),
-                          ListTile(
-                            title: Text(
-                              "Clock",
-                            ),
-                            subtitle: Text(
-                              "in stock",
-                            ),
+                          _buildListTile(
+                            title: "Clock",
+                            subtitle: "in stock",
                           ),
                         ],
                       ),
