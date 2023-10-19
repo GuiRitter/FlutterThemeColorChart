@@ -34,7 +34,9 @@ class HomePage extends StatelessWidget {
       appBar: app_bar.build(
         context: context,
       ),
-      body: Center(
+      body: SizedBox(
+        height: mediaSize.height,
+        width: mediaSize.width,
         child: Column(
           children: [
             SizedBox(
@@ -67,251 +69,293 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            SingleChildScrollView(
-              padding: EdgeInsets.all(
-                Theme.of(
-                      context,
-                    ).textTheme.titleLarge?.fontSize ??
-                    0,
-              ),
-              child: Column(
-                children: [
-                  const CircularProgressIndicator(),
-                  fieldSpacing(),
-                  Text(
-                    "headlineLarge",
-                    style: Theme.of(
-                      context,
-                    ).textTheme.headlineLarge,
-                  ),
-                  Text(
-                    "bodyLarge",
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyLarge,
-                  ),
-                  Text(
-                    "headlineSmall",
-                    style: Theme.of(
-                      context,
-                    ).textTheme.headlineSmall,
-                  ),
-                  Text(
-                    "bodySmall",
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodySmall,
-                  ),
-                  Form(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: "TextFormField",
-                      ),
-                      keyboardType: TextInputType.text,
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(
+                  Theme.of(
+                        context,
+                      ).textTheme.titleLarge?.fontSize ??
+                      0,
+                ),
+                child: Column(
+                  children: [
+                    const CircularProgressIndicator(),
+                    fieldSpacing(),
+                    Text(
+                      "headlineLarge",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineLarge,
                     ),
-                  ),
-                  fieldSpacing(),
-                  const Divider(),
-                  fieldSpacing(),
-                  Form(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: "TextFormField",
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
+                    Text(
+                      "bodyLarge",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge,
                     ),
-                  ),
-                  fieldSpacing(),
-                  DropdownButton(
-                    onChanged: (_) {},
-                    isExpanded: true,
-                    items: const [
-                      DropdownMenuItem(
-                        value: 0,
-                        child: Text(
-                          "Usage",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 1,
-                        child: Text(
-                          "Anatomy",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Behavior",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 3,
-                        child: Text(
-                          "Theming",
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: 4,
-                        child: Text(
-                          "Specs",
-                        ),
-                      ),
-                    ],
-                  ),
-                  const DropDownMenuWidget(
-                    name: "drop_down_menu_test",
-                    requestFocusOnTap: false,
-                    label: Text(
-                      "Drop Down",
+                    Text(
+                      "headlineSmall",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineSmall,
                     ),
-                    dropdownMenuEntries: [
-                      DropdownMenuEntry(
-                        value: 0,
-                        label: "Usage",
+                    Text(
+                      "bodySmall",
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall,
+                    ),
+                    Form(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: "TextFormField",
+                        ),
+                        keyboardType: TextInputType.text,
                       ),
-                      DropdownMenuEntry(
-                        value: 1,
-                        label: "Anatomy",
+                    ),
+                    fieldSpacing(),
+                    const Divider(),
+                    fieldSpacing(),
+                    Form(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: "TextFormField",
+                        ),
+                        keyboardType: TextInputType.visiblePassword,
                       ),
-                      DropdownMenuEntry(
-                        value: 2,
-                        label: "Behavior",
+                    ),
+                    fieldSpacing(),
+                    DropdownButton(
+                      onChanged: (_) {},
+                      isExpanded: true,
+                      items: const [
+                        DropdownMenuItem(
+                          value: 0,
+                          child: Text(
+                            "Usage",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 1,
+                          child: Text(
+                            "Anatomy",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 2,
+                          child: Text(
+                            "Behavior",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 3,
+                          child: Text(
+                            "Theming",
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: 4,
+                          child: Text(
+                            "Specs",
+                          ),
+                        ),
+                      ],
+                    ),
+                    const DropDownMenuWidget(
+                      name: "drop_down_menu_test",
+                      requestFocusOnTap: false,
+                      label: Text(
+                        "Drop Down",
                       ),
-                      DropdownMenuEntry(
-                        value: 3,
-                        label: "Theming",
-                      ),
-                      DropdownMenuEntry(
-                        value: 4,
-                        label: "Specs",
-                      ),
-                    ],
-                  ),
-                  fieldSpacing(),
-                  const Divider(),
-                  fieldSpacing(),
-                  Card(
-                    child: ListTile(
-                      title: const Text(
-                        "Card",
-                      ),
-                      trailing: PopupMenuButton<int>(
-                        itemBuilder: (
-                          context,
-                        ) =>
-                            [
-                          const PopupMenuItem<int>(
-                            value: 0,
-                            child: ListTile(
-                              leading: SizedBox.shrink(),
-                              title: Text(
-                                "Single",
+                      dropdownMenuEntries: [
+                        DropdownMenuEntry(
+                          value: 0,
+                          label: "Usage",
+                        ),
+                        DropdownMenuEntry(
+                          value: 1,
+                          label: "Anatomy",
+                        ),
+                        DropdownMenuEntry(
+                          value: 2,
+                          label: "Behavior",
+                        ),
+                        DropdownMenuEntry(
+                          value: 3,
+                          label: "Theming",
+                        ),
+                        DropdownMenuEntry(
+                          value: 4,
+                          label: "Specs",
+                        ),
+                      ],
+                    ),
+                    fieldSpacing(),
+                    const Divider(),
+                    fieldSpacing(),
+                    Card(
+                      child: ListTile(
+                        title: const Text(
+                          "Card",
+                        ),
+                        trailing: PopupMenuButton<int>(
+                          itemBuilder: (
+                            context,
+                          ) =>
+                              [
+                            const PopupMenuItem<int>(
+                              value: 0,
+                              child: ListTile(
+                                leading: SizedBox.shrink(),
+                                title: Text(
+                                  "Single",
+                                ),
                               ),
                             ),
-                          ),
-                          const PopupMenuItem<int>(
-                            value: 1,
-                            child: ListTile(
-                              leading: SizedBox.shrink(),
-                              title: Text(
-                                "1.15",
+                            const PopupMenuItem<int>(
+                              value: 1,
+                              child: ListTile(
+                                leading: SizedBox.shrink(),
+                                title: Text(
+                                  "1.15",
+                                ),
                               ),
                             ),
-                          ),
-                          const PopupMenuItem<int>(
-                            value: 2,
-                            child: ListTile(
-                              leading: SizedBox.shrink(),
-                              title: Text(
-                                "Double",
+                            const PopupMenuItem<int>(
+                              value: 2,
+                              child: ListTile(
+                                leading: SizedBox.shrink(),
+                                title: Text(
+                                  "Double",
+                                ),
                               ),
                             ),
-                          ),
-                          const PopupMenuItem<int>(
-                            value: 3,
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.check,
-                              ),
-                              title: Text(
-                                "Custom: 1.2",
-                              ),
-                            ),
-                          ),
-                          const PopupMenuItem<int>(
-                            enabled: false,
-                            padding: EdgeInsets.zero,
-                            value: 4,
-                            child: Divider(),
-                          ),
-                          const PopupMenuItem<int>(
-                            value: 5,
-                            child: ListTile(
-                              title: Text(
-                                "Add space before paragraph",
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_right,
+                            const PopupMenuItem<int>(
+                              value: 3,
+                              child: ListTile(
+                                leading: Icon(
+                                  Icons.check,
+                                ),
+                                title: Text(
+                                  "Custom: 1.2",
+                                ),
                               ),
                             ),
-                          ),
-                          const PopupMenuItem<int>(
-                            value: 6,
-                            child: ListTile(
-                              title: Text(
-                                "Add space after paragraph",
+                            const PopupMenuItem<int>(
+                              enabled: false,
+                              padding: EdgeInsets.zero,
+                              value: 4,
+                              child: Divider(),
+                            ),
+                            const PopupMenuItem<int>(
+                              value: 5,
+                              child: ListTile(
+                                title: Text(
+                                  "Add space before paragraph",
+                                ),
+                                trailing: Icon(
+                                  Icons.arrow_right,
+                                ),
                               ),
                             ),
-                          ),
-                          const PopupMenuItem<int>(
-                            enabled: false,
-                            padding: EdgeInsets.zero,
-                            value: 7,
-                            child: Divider(),
-                          ),
-                          const PopupMenuItem<int>(
-                            value: 8,
-                            child: ListTile(
-                              title: Text(
-                                "Custom spacing...",
+                            const PopupMenuItem<int>(
+                              value: 6,
+                              child: ListTile(
+                                title: Text(
+                                  "Add space after paragraph",
+                                ),
                               ),
+                            ),
+                            const PopupMenuItem<int>(
+                              enabled: false,
+                              padding: EdgeInsets.zero,
+                              value: 7,
+                              child: Divider(),
+                            ),
+                            const PopupMenuItem<int>(
+                              value: 8,
+                              child: ListTile(
+                                title: Text(
+                                  "Custom spacing...",
+                                ),
+                              ),
+                            ),
+                          ],
+                          onSelected: (
+                            value,
+                          ) {},
+                        ),
+                      ),
+                    ),
+                    fieldSpacing(),
+                    SizedBox(
+                      height: 150,
+                      child: ListView(
+                        children: const [
+                          ListTile(
+                            title: Text(
+                              "Pencil",
+                            ),
+                            subtitle: Text(
+                              "in stock",
+                            ),
+                          ),
+                          ListTile(
+                            title: Text(
+                              "Rubberbands",
+                            ),
+                            subtitle: Text(
+                              "in stock",
+                            ),
+                          ),
+                          ListTile(
+                            title: Text(
+                              "Rulers",
+                            ),
+                            subtitle: Text(
+                              "only 1 left in stock",
+                            ),
+                          ),
+                          ListTile(
+                            title: Text(
+                              "Clock",
+                            ),
+                            subtitle: Text(
+                              "in stock",
                             ),
                           ),
                         ],
-                        onSelected: (
-                          value,
-                        ) {},
                       ),
                     ),
-                  ),
-                  fieldSpacing(),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
+                    fieldSpacing(),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Fullwidth Button",
+                        ),
+                      ),
+                    ),
+                    fieldSpacing(),
+                    ElevatedButton(
                       onPressed: () {},
                       child: const Text(
-                        "Fullwidth Button",
+                        "Intrinsic Width Button",
                       ),
                     ),
-                  ),
-                  fieldSpacing(),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Intrinsic Width Button",
-                    ),
-                  ),
-                  fieldSpacing(),
-                  bottom_app_bar_widget.build(
-                    context: context,
-                    child: const SizedBox(
-                      width: double.infinity,
-                      child: Text(
-                        "Bottom App Bar",
+                    fieldSpacing(),
+                    bottom_app_bar_widget.build(
+                      context: context,
+                      child: const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          "Bottom App Bar",
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

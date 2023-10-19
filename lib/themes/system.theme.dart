@@ -21,6 +21,8 @@ ThemeData getTheme({
   required Color progressIndicator,
   required Color scaffoldBackground,
   required Color scrim,
+  required Color scrollBarColor,
+  required Color scrollBarOverlay,
   required Color shadow,
   required Color snackBarBackground,
   required Color snackBarForeground,
@@ -227,6 +229,33 @@ ThemeData getTheme({
       ),
     ),
     scaffoldBackgroundColor: scaffoldBackground,
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: MaterialStateProperty.resolveWith(
+        (
+          states,
+        ) {
+          double ratio = 0;
+
+          if (states.contains(
+            MaterialState.hovered,
+          )) {
+            ratio += 0.25;
+          }
+
+          if (states.contains(
+            MaterialState.dragged,
+          )) {
+            ratio += 0.25;
+          }
+
+          return Color.lerp(
+            scrollBarColor,
+            scrollBarOverlay,
+            ratio,
+          );
+        },
+      ),
+    ),
     shadowColor: shadow,
     snackBarTheme: SnackBarThemeData(
       backgroundColor: snackBarBackground,

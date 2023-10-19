@@ -84,6 +84,8 @@ ThemeData dark({
       scrim: Colors.black.withAlpha(
         192,
       ),
+      scrollBarColor: Colors.grey.shade600,
+      scrollBarOverlay: Colors.white,
       shadow: Colors.grey,
       snackBarBackground: Colors.white,
       snackBarForeground: Colors.grey.shade700,
