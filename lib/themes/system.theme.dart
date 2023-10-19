@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 final themeByBrightness = {
@@ -141,6 +143,13 @@ ThemeData getTheme({
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        textStyle: const TextStyle(
+          fontFeatures: [
+            FontFeature.enable(
+              "smcp",
+            ),
+          ],
+        ),
         foregroundColor: appBarForeground,
         backgroundColor: elevatedButtonBackground,
       ),
@@ -268,6 +277,11 @@ ThemeData getTheme({
       style: TextButton.styleFrom(
         foregroundColor: textButtonForeground,
         textStyle: const TextStyle(
+          fontFeatures: [
+            FontFeature.enable(
+              "smcp",
+            ),
+          ],
           fontWeight: FontWeight.bold,
         ),
       ).copyWith(
